@@ -10,9 +10,22 @@ import java.util.Collection;
 
 @RunWith(Enclosed.class)
 public class Assignment2_test {
+	public static class newImage {
+		@Test
+		public void test() {
+			var pixels = new Integer[]{0, 1, 2, 3};
+			var result = Assignment2.newImage(new Size(2, 2), pixels);
+			Assert.assertEquals(2, result.getWidth());
+			Assert.assertEquals(2, result.getHeight());
+			Assert.assertEquals(0xff000000, result.getRGB(0, 0));
+			Assert.assertEquals(0xff000001, result.getRGB(1, 0));
+			Assert.assertEquals(0xff000002, result.getRGB(0, 1));
+			Assert.assertEquals(0xff000003, result.getRGB(1, 1));
+		}
+	}
 
 	@RunWith(Parameterized.class)
-	public static class ReadFile {
+	public static class readFile {
 		@Parameterized.Parameters
 		public static Collection<Object> data() {
 			return Arrays.asList(new Object[][]{
@@ -42,12 +55,12 @@ public class Assignment2_test {
 					false,
 				},
 				{ // 5
-					"0,0,0\n",
+					"0,0,0 \n",
 					new Integer[]{0x0},
 					false,
 				},
 				{ // 6
-					"0,0,0\n",
+					"0,0,0 \n",
 					new Integer[]{0x0},
 					false,
 				},
@@ -57,12 +70,12 @@ public class Assignment2_test {
 					false,
 				},
 				{ // 8
-					"0,0,0\r\n1,1,1",
+					"0,0,0 \r\n1,1,1",
 					new Integer[]{0x0, 0x010101},
 					false,
 				},
 				{ // 9
-					"0,0,0 1,1,1\n2,2,2",
+					"0,0,0 1,1,1 \n2,2,2",
 					new Integer[]{0x0, 0x010101, 0x020202},
 					false,
 				},
@@ -98,7 +111,7 @@ public class Assignment2_test {
 	}
 
 	@RunWith(Parameterized.class)
-	public static class ParseColors {
+	public static class parseColors {
 		@Parameterized.Parameters
 		public static Collection<Object> data() {
 			return Arrays.asList(new Object[][]{
